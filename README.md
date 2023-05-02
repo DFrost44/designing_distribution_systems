@@ -14,7 +14,7 @@ $ for i in {1..10}; do curl http://localhost:9150 -X POST --data "msg=msg$i"; do
 200
 ```
 
-![[1.png]]
+![Result](1.png)
 
 ### Get that messages
 
@@ -23,7 +23,7 @@ $ curl http://localhost:9150
 msg3, msg5, msg1, msg6, msg4, msg7, msg2, msg10, msg9, msg8 : This service hasn't been implemented yet%
 ```
 
-![[2.png]]
+![](2.png)
 
 ### Turn off service on 11004 and 11005 ports
 
@@ -37,6 +37,6 @@ msg3, msg5, msg1, msg6, msg4, msg7, msg2, msg10, msg9, msg8 : This service hasn'
 
 There was few unsuccessful requests in curl because randomly selected services had been stopped.
 
-![[3.png]]
+![](3.png)
 
 
