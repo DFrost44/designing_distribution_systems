@@ -53,5 +53,5 @@ if __name__ == '__main__':
     
     port=( 9060 + int(sys.argv[1]))
 
-    my_utils.register_service( f"messages_service_{p}", port, ['messages'])
+    my_utils.register_service( "messages_service", port, [f'messages_{p}'])
     socketio.run(app, host="0.0.0.0", debug=True, port=port,use_reloader=False)

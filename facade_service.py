@@ -34,7 +34,7 @@ def facade_post():
     msg = request.form['msg']
     msg_uuid = uuid.uuid3(uuid.NAMESPACE_DNS, msg) 
 
-    log_service_url = my_utils.random_choose_service('logging') + 'log'
+    log_service_url = my_utils.random_choose_service('logging_service') + 'log'
 
     r = requests.post( log_service_url, data={ 'uuid':msg_uuid, 'msg':msg })
     msgs.offer( msg)
@@ -42,8 +42,8 @@ def facade_post():
  
 @app.get('/')
 def facade_get():
-    log_service_url = my_utils.random_choose_service('logging') + 'log'
-    msg_service_url = my_utils.random_choose_service('messages') + 'message'
+    log_service_url = my_utils.random_choose_service('logging_service') + 'log'
+    msg_service_url = my_utils.random_choose_service('messages_service') + 'message'
 
     r1 = requests.get( log_service_url)
     r2 = requests.get( msg_service_url)

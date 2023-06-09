@@ -39,5 +39,5 @@ def get_from_db():
  
 if __name__ == '__main__':
     port=( 11000 + int(sys.argv[1]))
-    my_utils.register_service( f"logging_service_{p}", port, ['logging'])
+    my_utils.register_service( "logging_service", port, [f'logging_{p}'])
     app.run(host="0.0.0.0", debug=True, port=port)

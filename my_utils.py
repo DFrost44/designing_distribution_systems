@@ -9,6 +9,7 @@ def register_service(service_name, service_port,tags):
         "name": service_name,
         "tags": tags,
         "port": service_port,
+        "service_id": f"{service_name}-{service_port}",
     }
     consul_client.agent.service.register(**service_definition)
 
@@ -18,15 +19,18 @@ def get_services_with_tag(tag):
     filtered_services = [service_name for service_name, service_tags in nodes.items() if tag in service_tags]
     return filtered_services
 
+def get_services_by_name(service_name):
+    client = consul.Consul()
+    _, services = client.catalog.service(service_name)
+    return services
+
+
 def random_choose_service(service_name):
-    filtered = get_services_with_tag(service_name)
+    filtered = get_services_by_name(service_name)
     rnd_name = random.choice(filtered)
-    _, nodes = consul_client.catalog.service(rnd_name)
-    
-    if nodes:
-        node = nodes[0]
-        return f'http://{node["ServiceAddress"]}:{node["ServicePort"]}/'
-    return None
+      
+    node = rnd_name
+    return f'http://{node["ServiceAddress"]}:{node["ServicePort"]}/'
 
 
 def add_hazelcast_data(data):
